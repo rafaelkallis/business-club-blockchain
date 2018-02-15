@@ -1,0 +1,9 @@
+.slides .header {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+}
+.slides .footer {
+    position: absolute;
+    bottom: 0;
+}
