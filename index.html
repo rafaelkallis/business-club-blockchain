@@ -1,8 +1,8 @@
 <html>
 
   <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/theme/beige.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/moon.min.css">
   </head>
 
   <body>
@@ -11,8 +11,8 @@
         <!--1-->
         <section>
           <section>
-            <h3>Title</h3>
-            <small>Seminar, Fall 2017</small>
+            <h3>Blockchain Technology</h3>
+            <small>Workshop Business Club UZH, Spring 2018</small>
             <div style="margin-top: 20%;">
               <a href="http://rafaelkallis.com" target="_blank">Rafael Kallis</a>
             </div>
@@ -20,26 +20,286 @@
           </section>
           <section>
             <small>You can find this presentation on:</small>
-            <small style="margin-top: 20px; display: block;"><a href="http://rafaelkallis.com" target="_blank">rafaelkallis.com</a></small>
+            <small style="margin-top: 20px; display: block;"><a href="http://bcblock.rafaelkallis.com" target="_blank">bcblock.rafaelkallis.com</a></small>
+          </section>
+          <section>
+            <h3>Outline</h3>
+            <ul>
+              <li>Introduction</li>
+              <li>Background</li>
+              <li>A Blockchain from scratch</li>
+              <li>Economics of Blockchains</li>
+              <li>Alternative Models</li>
+            </ul>
           </section>
         </section>
         <!--2-->
         <section>
           <section>
+            <h3>Introduction</h3>
           </section>
           <section>
+            <ul>
+              <li class="fragment">What problem do we try to solve?</li>
+              <li class="fragment">Trust in a trustless setting</li>
+              <li class="fragment">Originally developed as part of the digital currency Bitcoin</li>
+              <li class="fragment">Blockchain can be used for more than just payments</li>
+            </ul>
           </section>
           <section>
+            <p>What's wrong with centralization?</p>
+            <ul>
+              <li class="fragment">Trust a single entity</li>
+              <li class="fragment">Transaction costs</li>
+              <li class="fragment">Single point of failure</li>
+              <li class="fragment">Anonymity</li>
+            </ul>
           </section>
-          <!--7-->
+        </section>
+        <!--3-->
+        <section>
           <section>
-            <h3>Q&amp;A</h3>
+            <h3>Background</h3>
+            <ul>
+              <li class="fragment">Peer to Peer networks</li>
+              <li class="fragment">Digital Signature Algorithms</li>
+              <li class="fragment">Hashing</li>
+            </ul>
           </section>
+          <section>
+            <h3>Peer to Peer networks</h3>
+            <small>
+              <figure class="fragment" style="display: inline-block;">
+                <img src="/assets/centralized.svg" alt="centralized" height="256px" width="256px"/>
+                <figcaption>Centralized</figcaption>
+              </figure>
+              <figure class="fragment" style="display: inline-block;">
+                <img src="/assets/semi-centralized.svg" alt="semi-centralized" height="256px" width="256px"/>
+                <figcaption>Semi-Centralized</figcaption>
+              </figure>
+              <figure class="fragment" style="display: inline-block;">
+                <img src="/assets/decentralized.svg" alt="decentralized" height="256px" width="256px"/>
+                <figcaption>Decentralized</figcaption>
+              </figure>
+            </small>
+          </section>
+          <section>
+            Sending a message in a decentralized network
+            <small>
+              <figure class="fragment">
+                <img src="/assets/flooding.svg" alt="flooding" height="256px" width="256px"/>
+              </figure>
+              <ul>
+                <li class="fragment">Broadcasting message to all neighbors yields high network congestion</li>
+                <li class="fragment">Better approach: broadcast to only $\sqrt{n}$ neighbors <a href="http://www.cs.cornell.edu/people/egs/cs615-spring06/squareroot.pdf" target="_blank">(source)</a></li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <h3>Digital Signature Algorithms</h3>
+            <small>
+              <ul>
+                <li class="fragment">Private/Public key-pair</li>
+                <li class="fragment">Private: you don't share, Public: you share</li>
+                <li class="fragment">You can sign any message with your private key</li>
+                <li class="fragment">Others can verify that a message was send from you using your public key</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <h3>Hashing</h3>
+            <ul>
+              <li class="fragment">Non-reversible function</li>
+              <li class="fragment">Maps arbitrary natural number to a fixed range of natural numbers</li>
+              <li class="fragment">The output seems random</li>
+              <li class="fragment">We always get the same output given the same input</li>
+              <li class="fragment"><a href="https://passwordsgenerator.net/sha256-hash-generator/" target="_blank">Try it out here</a></li>
+            </ul>
+          </section>
+          <section>
+            Hashing Usecases
+            <small>
+              <ul>
+                <li class="fragment">Integrity Check: Create a number that uniquely identifies a message</li>
+                <li class="fragment">Proof of Work: Have proof that somebody spend some time</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <h3>Proof of Work</h3>
+            <small>
+              <ul>
+                <li class="fragment">Given $h: \mathbb{N} \longrightarrow [0,U)$</li>
+                <li class="fragment">Find an $x$ so that $h(x) \leq \frac{U}{d}$</li>
+                <li class="fragment">Where $x$ is called nonce and $d$ is called difficulty</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <h3>Proof of Work example</h3>
+            <small>
+              <ul>
+                <li class="fragment">Given the hash function $h: \mathbb{N} \longrightarrow [0,1000)$ and difficulty $d = 4$</li>
+                <li class="fragment">Find a nonce $x$ so that $h(x) \leq \frac{1000}{4} (= 250)$</li>
+                <li class="fragment">Assume we can do 1 hash per second (hash rate)</li>
+                <li class="fragment">Expected number of hashes is $\mathbb{E}[n_h] = 4$</li>
+                <li class="fragment">Therefore it would take on average 4 seconds to find a nonce $x$ which satisfies $h(x) \leq 250$</li>
+                <li class="fragment">We observe $\mathbb{E}[n_h] = d$</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <p>Problem: pre-computation</p>
+            <ul>
+              <li class="fragment">One might pre-compute nonces and cheat the system</li>
+            </ul>
+            <p class="fragment">Solution: challenge</p>
+            <ul>
+              <li class="fragment">System gives you an arbitrary number $c$. New condition is $h(x+c) \leq \frac{U}{d}$</li>
+            </ul>
+          </section>
+          <section>
+            <p>Concluding</p>
+            <small>
+              <ul>
+                <li class="fragment">Peer to Peer networks</li>
+                <li class="fragment">Digital Signature Algorithms used to verify a message's sender</li>
+                <li class="fragment">Create unique identifiers using hash functions</li>
+                <li class="fragment">Using proof of work we guarantee that a third party spend a significant amount of time</li>
+              </ul>
+            </small>
+          </section>
+        </section>
+        <!--3 -->
+        <section>
+          <section>
+            <h3>Transaction, version 1</h3>
+            <small>
+              <ul>
+                <li class="fragment">$from$:      [public key]</li>
+                <li class="fragment">$to$:        [public key]</li>
+                <li class="fragment">$amount$:    [number]</li>
+                <li class="fragment">$previous\_tx$:  [hash]</li>
+                <li class="fragment">$proof$:     [number]</li>
+                <li class="fragment">$signature$: [signature]</li>
+              </ul>
+              <p class="fragment">hash of this transaction $h_{tx} = h(from \cdot to \cdot amount \cdot previous\_tx \cdot proof)$</p>
+              <p class="fragment">$signature = sign(h_{tx},private\ key)$</p>
+              <p class="fragment">we don't include $signature$ in the transaction's hash due to <a href="https://www.tik.ee.ethz.ch/file/7e4a7f3f2991784786037285f4876f5c/malleability.pdf" target="_blank">this security concern</a></p>
+            </small>
+          </section>
+          <section>
+            <small>
+              <p>When we receive a transaction, we check:</p>
+              <ul>
+                <li class="fragment">if $amount$ is non-negative</li>
+                <li class="fragment">if the owner of $from$ signed the transaction ($signature$ verification, $verify(signature,from) \equiv \top$)</li>
+                <li class="fragment">if $from$ has a positive balance</li>
+                <li class="fragment">if a transaction with hash $h_{tx} = previous\_tx$ exists</li>
+                <li class="fragment">if the proof of work condition $h_{tx} \leq \frac{U}{d}$ is satisfied given $proof$</li>
+              </ul>
+              <p class="fragment">If all the above are satisfied, the transaction is valid</p>
+            </small>
+            </section>
+            <section>
+            <small>
+              <p>To create a new transaction, we:</p>
+              <ul>
+                <li class="fragment">need our private key, the recipient's public key, the amount and the hash of the previous, i.e. most recent, transaction</li>
+                <li class="fragment">we try out different nonces, i.e. proofs, $x$ until the condition $h_{tx} \leq \frac{U}{d}$ is satisfied</li>
+                <li class="fragment">we sign the transaction with out private key, so that $signature = sign(h_{tx},private\ key)$</li>
+                <li class="fragment">we broadcast the transaction to our neighbors</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <small>
+              <p>Works perfectly, assuming there are no network delays</p>
+              <p class="fragment">When a transaction gets published, everybody is aware of it instantaneously</p>
+            </small>
+            <figure class="fragment">
+              <img src="/assets/chain1.svg" alt="transaction chain" height="256px"/>
+            </figure>
+          </section>
+        </section>
+        <!--4-->
+        <section>
+          <section>
+            <p>What happens when we introduce network delays?</p>
+            <p class="fragment">Participants have different views of the chain</p>
+            <figure class="fragment">
+              <img src="/assets/chain2.svg" alt="transaction chains" height="256px"/>
+            </figure>
+          </section>
+          <section>
+            <p>We refer to this phenomenon as $fork$</p>
+            <figure class="fragment">
+              <img src="/assets/chain3_fork.svg" alt="fork" height="256px"/>
+            </figure>
+          </section>
+          <section>
+            <small>
+              <p>Assume your latest transaction is $tx_{\alpha}$</p>
+              <p class="fragment">You now receive two new transactions, $tx_{\beta}$ and $tx_{\gamma}$, both referencing $tx_{\alpha}$ as their previous transaction</p>
+              <p class="fragment">You want to submit a new transaction. Do you refer to $tx_{\beta}$ or $tx_{\gamma}$ as your previous transaction?</p>
+            </small>
+          </section>
+          <section>
+            <p>Possible Strategies:</p>
+            <small>
+              <ol>
+                <li class="fragment">Wait until a new transaction comes in and continue from longest chain.</li>
+                <li class="fragment">We pick the transaction which arrived earlier.</li>
+                <li class="fragment">We split our computational power.</li>
+              </ol>
+              <p class="fragment">Transaction with majority of computational power wins</p>
+              <p class="fragment">We eventually converge towards a specific longest chain</p>
+            </small>
+          </section>
+          <section>
+            <p>Double spending attack</p>
+            <small>
+              <ul>
+                <li class="fragment">Create a transaction as you normally would.</li>
+                <li class="fragment">You intentionally create a fork and try to outpace the former transaction.</li>
+                <li class="fragment">If successful, the former transaction is not in the chain.</li>
+              </ul>
+            </small>
+            <p class="fragment">$forks \nearrow \quad \implies security \searrow$</p>
+          </section>
+        </section>
+        <!--5-->
+        <section>
+          <section>
+            <h3>Estimating our system's performance</h3>
+            <small>
+              <ul>
+                <li class="fragment">We set the difficulty such that a participant spends on average 10 minutes finding a valid nonce.</li>
+                <li class="fragment">with a single participant, we expect $\frac{1}{10}$ transactions per minutes</li>
+                <li class="fragment">10 participants $\implies$ 1 transaction per minute</li>
+                <li class="fragment">with too many participants, the system looses stability</li>
+              </ul>
+              <p class="fragment">Possible solution: adjust difficulty based on how frequent transactions are committed</p>
+            </small>
+          </section>
+        </section>
+        <!--7-->
+        <section>
+          <h3>Q&amp;A</h3>
+        </section>
       </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/js/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/lib/js/head.min.js"></script>
     <script>
-Reveal.initialize();
+      Reveal.initialize({
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js'
+        },
+        dependencies: [
+          { src: "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/math/math.min.js", async: true }
+        ]
+      });
     </script>
   </body>
 
