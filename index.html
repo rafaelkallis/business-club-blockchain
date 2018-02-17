@@ -24,47 +24,53 @@
           </section>
           <section>
             <h3>Outline</h3>
-            <ul>
-              <li>Introduction</li>
-              <li>Background</li>
-              <li>A Blockchain from scratch</li>
-              <li>Economics of Blockchains</li>
-              <li>Alternative Models</li>
-            </ul>
+            <small>
+              <ul>
+                <li>Introduction</li>
+                <li>Background</li>
+                <li>A Blockchain from scratch</li>
+                <li>Economics of Blockchains</li>
+                <li>Alternative Models</li>
+              </ul>
+            </small>
           </section>
         </section>
         <!--2-->
         <section>
           <section>
             <h3>Introduction</h3>
-          </section>
-          <section>
-            <ul>
-              <li class="fragment">What problem do we try to solve?</li>
-              <li class="fragment">Trust in a trustless setting</li>
-              <li class="fragment">Originally developed as part of the digital currency Bitcoin</li>
-              <li class="fragment">Blockchain can be used for more than just payments</li>
-            </ul>
+            <small>
+              <ul>
+                <li class="fragment">What problem are we trying to solve?</li>
+                <li class="fragment">Trust in a trustless setting</li>
+                <li class="fragment">Originally developed as part of the digital currency Bitcoin</li>
+                <li class="fragment">Blockchain can be used for more than just payments</li>
+              </ul>
+            </small>
           </section>
           <section>
             <p>What's wrong with centralization?</p>
-            <ul>
-              <li class="fragment">Trust a single entity</li>
-              <li class="fragment">Transaction costs</li>
-              <li class="fragment">Single point of failure</li>
-              <li class="fragment">Anonymity</li>
-            </ul>
+            <small>
+              <ul>
+                <li class="fragment">Trust in a single entity</li>
+                <li class="fragment">Transaction costs</li>
+                <li class="fragment">Single point of failure</li>
+                <li class="fragment">Anonymity</li>
+              </ul>
+            </small>
           </section>
         </section>
         <!--3-->
         <section>
           <section>
             <h3>Background</h3>
-            <ul>
-              <li class="fragment">Peer to Peer networks</li>
-              <li class="fragment">Digital Signature Algorithms</li>
-              <li class="fragment">Hashing</li>
-            </ul>
+            <small>
+              <ul>
+                <li class="fragment">Peer to Peer networks</li>
+                <li class="fragment">Digital Signature Algorithms</li>
+                <li class="fragment">Hashing</li>
+              </ul>
+            </small>
           </section>
           <section>
             <h3>Peer to Peer networks</h3>
@@ -108,16 +114,18 @@
           </section>
           <section>
             <h3>Hashing</h3>
-            <ul>
-              <li class="fragment">Non-reversible function</li>
-              <li class="fragment">Maps arbitrary natural number to a fixed range of natural numbers</li>
-              <li class="fragment">The output seems random</li>
-              <li class="fragment">We always get the same output given the same input</li>
-              <li class="fragment"><a href="https://passwordsgenerator.net/sha256-hash-generator/" target="_blank">Try it out here</a></li>
-            </ul>
+            <small>
+              <ul>
+                <li class="fragment">One way (non-reversible) function</li>
+                <li class="fragment">Maps arbitrary natural number to a fixed range of natural numbers</li>
+                <li class="fragment">The output seems random</li>
+                <li class="fragment">We always get the same output given the same input</li>
+                <li class="fragment"><a href="https://passwordsgenerator.net/sha256-hash-generator/" target="_blank">Try it out here</a></li>
+              </ul>
+            </small>
           </section>
           <section>
-            Hashing Usecases
+            <p>Hashing Usecases</p>
             <small>
               <ul>
                 <li class="fragment">Integrity Check: Create a number that uniquely identifies a message</li>
@@ -129,9 +137,9 @@
             <h3>Proof of Work</h3>
             <small>
               <ul>
-                <li class="fragment">Given $h: \mathbb{N} \longrightarrow [0,U)$</li>
-                <li class="fragment">Find an $x$ so that $h(x) \leq \frac{U}{d}$</li>
-                <li class="fragment">Where $x$ is called nonce and $d$ is called difficulty</li>
+                <li class="fragment">We denote $x$ a nonce, $u$ universe and $d$ difficulty</li>
+                <li class="fragment">Given hash function $h: \mathbb{N} \longrightarrow [0,u)$</li>
+                <li class="fragment">Find a $x$ so that $h(x) &lt; \frac{u}{d}$</li>
               </ul>
             </small>
           </section>
@@ -140,10 +148,10 @@
             <small>
               <ul>
                 <li class="fragment">Given the hash function $h: \mathbb{N} \longrightarrow [0,1000)$ and difficulty $d = 4$</li>
-                <li class="fragment">Find a nonce $x$ so that $h(x) \leq \frac{1000}{4} (= 250)$</li>
+                <li class="fragment">Find a nonce $x$ so that $h(x) &lt; \frac{1000}{4} (= 250)$</li>
                 <li class="fragment">Assume we can do 1 hash per second (hash rate)</li>
                 <li class="fragment">Expected number of hashes is $\mathbb{E}[n_h] = 4$</li>
-                <li class="fragment">Therefore it would take on average 4 seconds to find a nonce $x$ which satisfies $h(x) \leq 250$</li>
+                <li class="fragment">Therefore it would take on average 4 seconds to find a nonce $x$ which satisfies $h(x) &lt; 250$</li>
                 <li class="fragment">We observe $\mathbb{E}[n_h] = d$</li>
               </ul>
             </small>
@@ -155,7 +163,7 @@
             </ul>
             <p class="fragment">Solution: challenge</p>
             <ul>
-              <li class="fragment">System gives you an arbitrary number $c$. New condition is $h(x+c) \leq \frac{U}{d}$</li>
+              <li class="fragment">System gives you an arbitrary number $c$. New condition is $h(x+c) &lt; \frac{u}{d}$</li>
             </ul>
           </section>
           <section>
@@ -179,12 +187,12 @@
                 <li class="fragment">$from$:      [public key]</li>
                 <li class="fragment">$to$:        [public key]</li>
                 <li class="fragment">$amount$:    [number]</li>
-                <li class="fragment">$previous\_tx$:  [hash]</li>
+                <li class="fragment">$T_{previous}$:  [hash]</li>
                 <li class="fragment">$proof$:     [number]</li>
                 <li class="fragment">$signature$: [signature]</li>
               </ul>
-              <p class="fragment">hash of this transaction $h_{tx} = h(from \cdot to \cdot amount \cdot previous\_tx \cdot proof)$</p>
-              <p class="fragment">$signature = sign(h_{tx},private\ key)$</p>
+              <p class="fragment">hash of this transaction $h_T = h(from \cdot to \cdot amount \cdot T_{previous} \cdot proof)$</p>
+              <p class="fragment">$signature = sign(h_T,private\ key)$</p>
               <p class="fragment">we don't include $signature$ in the transaction's hash due to <a href="https://www.tik.ee.ethz.ch/file/7e4a7f3f2991784786037285f4876f5c/malleability.pdf" target="_blank">this security concern</a></p>
             </small>
           </section>
@@ -195,8 +203,8 @@
                 <li class="fragment">if $amount$ is non-negative</li>
                 <li class="fragment">if the owner of $from$ signed the transaction ($signature$ verification, $verify(signature,from) \equiv \top$)</li>
                 <li class="fragment">if $from$ has a positive balance</li>
-                <li class="fragment">if a transaction with hash $h_{tx} = previous\_tx$ exists</li>
-                <li class="fragment">if the proof of work condition $h_{tx} \leq \frac{U}{d}$ is satisfied given $proof$</li>
+                <li class="fragment">if the previous transaction $T_{previous}$ exists</li>
+                <li class="fragment">if the proof of work condition $h_T &lt; \frac{u}{d}$ is satisfied given $proof$</li>
               </ul>
               <p class="fragment">If all the above are satisfied, the transaction is valid</p>
             </small>
@@ -206,8 +214,8 @@
               <p>To create a new transaction, we:</p>
               <ul>
                 <li class="fragment">need our private key, the recipient's public key, the amount and the hash of the previous, i.e. most recent, transaction</li>
-                <li class="fragment">we try out different nonces, i.e. proofs, $x$ until the condition $h_{tx} \leq \frac{U}{d}$ is satisfied</li>
-                <li class="fragment">we sign the transaction with out private key, so that $signature = sign(h_{tx},private\ key)$</li>
+                <li class="fragment">we try out different nonces, i.e. proofs, $x$ until the condition $h_T &lt; \frac{u}{d}$ is satisfied</li>
+                <li class="fragment">we sign the transaction with out private key, so that $signature = sign(h_T,private\ key)$</li>
                 <li class="fragment">we broadcast the transaction to our neighbors</li>
               </ul>
             </small>
@@ -239,9 +247,9 @@
           </section>
           <section>
             <small>
-              <p>Assume your latest transaction is $tx_{\alpha}$</p>
-              <p class="fragment">You now receive two new transactions, $tx_{\beta}$ and $tx_{\gamma}$, both referencing $tx_{\alpha}$ as their previous transaction</p>
-              <p class="fragment">You want to submit a new transaction. Do you refer to $tx_{\beta}$ or $tx_{\gamma}$ as your previous transaction?</p>
+              <p>Assume your latest transaction is $T_{\alpha}$</p>
+              <p class="fragment">You now receive two new transactions, $T_{\beta}$ and $T_{\gamma}$, both referencing $T_{\alpha}$ as their previous transaction</p>
+              <p class="fragment">You want to submit a new transaction. Do you refer to $T_{\beta}$ or $T_{\gamma}$ as your previous transaction?</p>
             </small>
           </section>
           <section>
@@ -257,7 +265,7 @@
             </small>
           </section>
           <section>
-            <p>Double spending attack</p>
+            <h3>Double spending attack</h3>
             <small>
               <ul>
                 <li class="fragment">Create a transaction as you normally would.</li>
@@ -276,16 +284,331 @@
               <ul>
                 <li class="fragment">We set the difficulty such that a participant spends on average 10 minutes finding a valid nonce.</li>
                 <li class="fragment">with a single participant, we expect $\frac{1}{10}$ transactions per minutes</li>
-                <li class="fragment">10 participants $\implies$ 1 transaction per minute</li>
+                <li class="fragment">$10$ participants $\implies$ $1$ transaction per minute</li>
                 <li class="fragment">with too many participants, the system looses stability</li>
               </ul>
               <p class="fragment">Possible solution: adjust difficulty based on how frequent transactions are committed</p>
             </small>
           </section>
         </section>
+        <!--6-->
+        <section>
+          <section>
+            <h3>Transaction, version 2</h3>
+            <small>
+              <ul>
+                <li>$from$:      [public key]</li>
+                <li>$to$:        [public key]</li>
+                <li>$amount$:    [number]</li>
+                <li>$T_{previous}$:  [hash]</li>
+                <li>$proof$:     [number]</li>
+                <li>$signature$: [signature]</li>
+                <li class="fragment">$\textbf{time}$: [seconds since $T_{previous}$]</li>
+              </ul>
+              <p class="fragment">hash of this transaction $h_T = h(from \cdot to \cdot amount \cdot T_{previous} \cdot proof \cdot \textbf{time})$</p>
+              <p class="fragment">$signature = sign(h_T,private\ key)$</p>
+            </small>
+          </section>
+          <section>
+            <small>
+              <p>Adjusting difficulty $d$ based on $time$</p>
+              <ul>
+                <li class="fragment">Say we desire $1$ transaction every $10$ minutes</li>
+                <li class="fragment">If $time &lt; 600s$, increase $d$, else decrease $d$</li>
+                <li class="fragment">We adjust $d$, say once a day</li>
+                <li class="fragment">Having $1$ transaction each $10$ minutes, we have to adjust $d$ every $24 \times 6 = 144$ transactions</li>
+                <li class="fragment">If the elapsed time is less than $24$ hours, i.e. $\sum_{i \in [n-144,n]}T_i[time] &lt; 86400$, increase $d$, else decrease $d$</li>
+                <li class="fragment">Historical Bitcoin <a href="https://bitinfocharts.com/comparison/bitcoin-difficulty.html#1y" target="_blank">difficulty</a> &amp; <a href="https://bitinfocharts.com/comparison/bitcoin-hashrate.html#log" target="_blank">hashrate</a> data</li>
+              </ul>
+              <p class="fragment">We now get $1$ transaction every $10$ minutes regardless of the number of participants</p>
+            </small>
+          </section>
+          <section>
+            <h3>Performance Estimation</h3>
+            <small>
+              <ul>
+                <li class="fragment">Say transaction time is $10$ minutes, all participants have equal computational power (= hashrate) and assume we have $10$ participants</li>
+                <li class="fragment">Each participant has to wait on average $10 \times 10 = 100$ minutes to create and approve a transaction</li>
+                <!--<li class="fragment">What if one of the participants has significantly more computational power?</li>-->
+              </ul>
+              <p class="fragment">Instead of having a chain of transactions, we now have a chain of sets of transactions, i.e. a chain of blocks</p>
+            </small>
+          </section>
+        </section>
         <!--7-->
         <section>
-          <h3>Q&amp;A</h3>
+          <section>
+            <h3>Transaction, version 3</h3>
+            <small>
+              <ul class="fragment">
+                <li>$from$:      [public key]</li>
+                <li>$to$:        [public key]</li>
+                <li>$amount$:    [number]</li>
+                <li>$signature$: [signature]</li>
+              </ul>
+              <p class="fragment">$h_T = h(from \cdot to \cdot amount), signature = sign(h_T,private\ key)$</p>
+            </small>
+            <h3 class="fragment">Block</h3>
+            <small>
+              <ul>
+                <li class="fragment">$transactions$: [list of transaction hashes]</li>
+                <li class="fragment">$B_{previous}$:  [hash]</li>
+                <li class="fragment">$proof$:     [number]</li>
+                <li class="fragment">$time$: [seconds since last block]</li>
+              </ul>
+              <p class="fragment">$h_B = h(transactions \cdot B_{previous} \cdot proof \cdot time)$</p>
+              <p class="fragment">$h_B$ has to satisfy $h_B &lt; \frac{u}{d}$</p>
+            </small>
+          </section>
+          <section>
+            <small>
+              <p>Transactions are now broadcasted to all participants</p>
+              <p class="fragment">If a received transaction is valid, i.e.,</p>
+              <ol>
+                <li class="fragment">non-negative $amount$</li>
+                <li class="fragment">valid $signature$</li>
+                <li class="fragment">non-negative balance</li>
+              </ol>
+              <p class=fragment>it is added to a (local) pending transactions set</p>
+              <p class="fragment">
+                The pending transactions set will eventually become part of
+                a block, depending on difficulty $d$
+              </p>
+              <p class="fragment">Once part of a block, these transactions are considered approved</p>
+              <p class="fragment">
+                Note that they can become pending again if a fork occurs. 
+                We denote such blocks as stale blocks. 
+                <a href="https://eprint.iacr.org/2016/555.pdf" target="_blank">Further reading</a>
+              </p>
+            </small>
+          </section>
+          <section>
+            <small>
+              <p>When receiving a new block, the block is considered valid if:</p>
+              <ul>
+                <li class="fragment">all transactions inside $transactions$, exist, are valid and are in no other block</li>
+                <li class="fragment">$B_{previous}$ exists</li>
+                <li class="fragment">$time$ is not in the future</li>
+                <li class="fragment">$proof$ satisfies $h_b &lt; \frac{u}{d}$</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <h3>Estimating performance</h3>
+            <small>
+              <ul>
+                <li class="fragment">Say the block time is $10$ minutes and each block can hold $\infty$ transactions</li>
+                <li class="fragment">We now have to wait on average $10$ minutes for an "approved" transaction</li>
+              </ul>
+              <p class="fragment">
+                Problem: given each block can hold $\infty$ transactions, 
+                an adversary might fill a block with SPAM, i.e 
+                transactions with no value. Other participants are forced to save
+                the block.
+              </p>
+              <p class="fragment">Possible solution: <b>Block Size Limit</b></p>
+            </small>
+          </section>
+          <section>
+            <h3>Block Size Limit</h3>
+            <small>
+              <ul>
+                <li class="fragment">Given a block time of $10$ minutes,</li>
+                <li class="fragment">Block size limit of say $3500$ transactions per block</li>
+                <li class="fragment">$\implies$ up to $\approx 5 \cdot 10^{5}$ transactions per day, on average</li>
+                <li class="fragment">Historical data on Bitcoin's transactions <a href="https://bitinfocharts.com/comparison/bitcoin-transactions.html#log" target="_blank">here</a></li>
+              </ul>
+            </small>
+          </section> 
+          <section>
+            <h3>Blockchain Participants</h3>
+            <small>
+              <ul>
+                <li class="fragment">Transaction creators, i.e. <b>Wallets</b></li>
+                <li class="fragment">Transaction approvers, i.e. <b>Miners</b></li>
+              </ul>
+              <figure class="fragment">
+                <img src="/assets/wallets_miners.svg" alt="wallets and miners" height="256px"/>
+              </figure>
+            </small>
+          </section>
+        </section>
+        <!--8-->
+        <section>
+          <section>
+            <h3>Economics of Blockchain</h3>
+          </section>
+          <section>
+            <p>What incentives do I have for being a miner?</p>
+            <small>
+              <ul>
+                <li class="fragment">Cost of being a miner:</li>
+                <li class="fragment"><b>hardware</b> (fixed)</li>
+                <li class="fragment"><b>energy</b> (variable)</li>
+              </ul>
+              <p class="fragment">$\langle C \rangle = \eta \cdot h \cdot T$</p>
+              <ul>
+                <li class=fragment>$\eta$: cost per hash (energy + amortized hardware)</li>
+                <li class="fragment">$h$: hashrate</li>
+                <li class="fragment">$T$: blocktime</li>
+              </ul>
+              <p class="fragment">cost model is from <a href="https://www.bitcoinunlimited.info/resources/feemarket.pdf" target="_blank">this paper</a></p>
+            </small>
+          </section>
+          <section>
+            <h3>Rewarding Schemes</h3>
+            <small>
+              <ul>
+                <li class="fragment">Transaction fees</li>
+                <li class="fragment">Block reward</li>
+              </ul>
+              <p class="fragment">We add a $beneficiary$ property to the block in which the successful miner puts his public key</p>
+              <p class="fragment">Alternative rewarding schemes presented <a href="https://dl.acm.org/citation.cfm?id=3003773" target="_blank">here</a></p>
+            </small>
+          </section>
+          <section>
+            <p>Transaction Fees</p>
+            <small>
+              <p class="fragment">Each transaction contains a fee which the successful miner gets paid, if the transaction is included in a block</p>
+              <ul>
+                <li class="fragment">Fixed: transactions are indifferent</li>
+                <li class="fragment">Relative to $amount$: miners are motivated to approve high value transactions first</li>
+                <li class="fragment">Bidding: miners are motivated to approve higher bidding transactions first</li>
+              </ul>
+              <p class="fragment">Fees do not <b>inflate</b> the currency<p>
+            </small>
+          </section>
+          <section>
+            <p>Block reward</p>
+            <small>
+              <p class="fragment">A block's miner receives a reward for mining a block</p>
+              <ul>
+                <li class="fragment">Currency not inflation-proof</li>
+                <li class="fragment">Effectivelly everybody pays the price</li>
+              </ul>
+              <p class="fragment">
+                Problem: a block reward motivates miners to mine,
+                but does not motivate to add any transactions to the block (empty block mining)
+            </small>
+          </section>
+          <section>
+            <h3><a href="https://www.cs.princeton.edu/~smattw/CKWN-CCS16.pdf" target="_blank">Instability without the block reward</a></h3>
+            <p>
+              Without a significant block reward, selfish miners create intentional forks
+              to increase their profitability and incentivize truthful to continue appending
+              blocks to their forked chain.
+            </p>
+          </section>
+          <section>
+            <small>
+              <ul>
+                <li>Until now we assumed all miners have equal computational power.</li>
+                <li class="fragment"><a href="https://blockchain.info/pools?timespan=4days" target="_blank">Reality Check</a></li>
+                <li class="fragment">Depending on hardware and hash function used, one can produce hashes more efficiently (lower $\eta)</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <small>
+              <p>An increase in number of miners yields an increase to the mining difficulty</p>
+              <p class="fragment">Eventually we reach a point where mining is not profitable anymore</p>
+              <p class="fragment">After that, whoever has the most efficient hardware, i.e. lowest $\eta$ remains profitable</p>
+            </small>
+          </section>
+          <section>
+          </section>
+          <section>
+            <p>High energy consumption is an unwanted byproduct</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h3>Alternatives</h3>
+          </section>
+          <section>
+            <small>
+              <ul>
+                <li>Chain-based Proof of Stake</li>
+                <li class="fragment">Byzantine-fault-tolerant Proof of Stake</li>
+                <li class="fragment">Tangle, i.e. Markov Chain Montecarlo Tip selection based Direct Acyglic Graph</li>
+                <li class="fragment">Block-lattice, i.e. set of blockchains forming a Direct Acyclic Graph</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <h3>Proof of Stake (chain-based)</h3>
+            <small>
+              <ul>
+                <li class="fragment">To become a miner, you have to submit a significant stake as a guarantee</li>
+                <li class="fragment">We remove nonce $x$,  having to satisfy $\frac{h_B}{stake_i} &lt; \frac{u}{d}$, where</li>
+                <li class="fragment">$h_B = h(transactions \cdot B_{previous} \cdot time)</li>
+                <li class="fragment">Only differentiating property is miner's $i$ stake $stake_i$</li>
+                <li class="fragment">$stake_i \nearrow \quad \implies$ winning likelihood $\nearrow$</li>
+                <li class="fragment">Miners can not perform more than $1$ per second, regardless of hardware (ASIC resistant)</li>
+                <li class="fragment">Quantum resistant</li>
+                <li class="fragment">Energy consumption <b>negligible</b></li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <h3>Stake Grinding Attack</h3>
+            <p class="fragment">Permutate set of pending transactions until condition is satisfied</p>
+            <p class="fragment">Possible to increase hashrate again</p>
+          </section>
+          <section>
+            <h3>Nothing at Stake Attack</h3>
+            <small class="fragment">
+              When forks happen, miners do not lose resurces when appending
+              blocks to multiple fork ends simultaneously
+            </small>
+          </section>
+          <section>
+            <h3>Proof of Stake (BFT)</h3>
+            <small>
+              <ul>
+                <li class="fragment">Miners submit significant stake</li>
+                <li class="fragment">Multi-round block election</li>
+                <li class="fragment">Block with some majority wins</li>
+                <li class="fragment">Voters share the reward</li>
+                <li class="fragment">Higher stake $\implies$ greater reward</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <p>Solutions until now do not scale good</p>
+          </section>
+          <section>
+            <h3><a href="https://iota.org/IOTA_Whitepaper.pdf" target="_blank">The Tangle</a></h3>
+            <small>
+              <ul>
+                <li class="fragment">In order to submit a transaction, one has to approve $2$ pending transactions</li>
+                <li class="fragment">Pending transactions are selected using a MCMC randomized walk</li>
+                <li class="fragment">No (direct) transaction fees</li>
+                <li class="fragment">Energy cost of approving other transactions has to be significant enough such that spamming the network is costly</li>
+                <li class="fragment">More participants $\implies$ faster approval rate</li>
+                <li class="fragment">Scales better than traditional PoW and PoS systems</li>
+                <li class="fragment">Still on "training wheels" at the moment, i.e. centralized nodes helping to keep system integrity</li>
+              </ul>
+            </small>
+          </section>
+          <section>
+            <h3>Behold</h3>
+          </section>
+          <section>
+            <h3>The Block-Lattice, Nano</h3>
+            <small>
+              <ul>
+                <li class="fragment">Every participants owns his personal blockchain</li>
+                <li class="fragment">The set of all blockchains is named block-lattice</li>
+                <li class="fragment">Each blockchain contains "send" and receive blocks</li>
+                <li class="fragment">double-entry accounting on steroids</li>
+                <li class="fragment">No (direct) transaction fees and near instant verifications</li>
+              </ul>
+            </small>
+          </section>
+        </section>
+        <section>
+          <h3>Thank you!</h3>
         </section>
       </div>
     </div>
