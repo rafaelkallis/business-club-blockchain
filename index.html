@@ -20,7 +20,10 @@
           </section>
           <section>
             <small>You can find this presentation on:</small>
-            <small style="margin-top: 20px; display: block;"><a href="http://bcblock.rafaelkallis.com" target="_blank">bcblock.rafaelkallis.com</a></small>
+            <small style="margin-top: 20px; display: block;"><a href="http://blockchainworkshop.rafaelkallis.com" target="_blank">blockchainworkshop.rafaelkallis.com</a></small>
+          </section>
+          <section>
+            <img src="/assets/motivation.jpg" width="512px"/>
           </section>
           <section>
             <h3>Outline</h3>
@@ -120,7 +123,8 @@
                 <li class="fragment">Maps arbitrary natural number to a fixed range of natural numbers</li>
                 <li class="fragment">The output seems random</li>
                 <li class="fragment">We always get the same output given the same input</li>
-                <li class="fragment"><a href="https://passwordsgenerator.net/sha256-hash-generator/" target="_blank">Try it out here</a></li>
+                <li class="fragment">Example: $h(x) = \lfloor u \cdot (x \cdot 0.618\ mod\ 1)\rfloor$</li>
+                <li class="fragment"><a href="https://passwordsgenerator.net/sha256-hash-generator/" target="_blank">Try NSA's sha-256 here</a></li>
               </ul>
             </small>
           </section>
@@ -155,16 +159,6 @@
                 <li class="fragment">We observe $\mathbb{E}[n_h] = d$</li>
               </ul>
             </small>
-          </section>
-          <section>
-            <p>Problem: pre-computation</p>
-            <ul>
-              <li class="fragment">One might pre-compute nonces and cheat the system</li>
-            </ul>
-            <p class="fragment">Solution: challenge</p>
-            <ul>
-              <li class="fragment">System gives you an arbitrary number $c$. New condition is $h(x+c) &lt; \frac{u}{d}$</li>
-            </ul>
           </section>
           <section>
             <p>Concluding</p>
@@ -389,7 +383,7 @@
                 <li class="fragment">all transactions inside $transactions$, exist, are valid and are in no other block</li>
                 <li class="fragment">$B_{previous}$ exists</li>
                 <li class="fragment">$time$ is not in the future</li>
-                <li class="fragment">$proof$ satisfies $h_b &lt; \frac{u}{d}$</li>
+                <li class="fragment">$proof$ satisfies $h_B &lt; \frac{u}{d}$</li>
               </ul>
             </small>
           </section>
@@ -493,18 +487,18 @@
           </section>
           <section>
             <h3><a href="https://www.cs.princeton.edu/~smattw/CKWN-CCS16.pdf" target="_blank">Instability without the block reward</a></h3>
-            <p>
+            <small>
               Without a significant block reward, selfish miners create intentional forks
-              to increase their profitability and incentivize truthful to continue appending
-              blocks to their forked chain.
-            </p>
+              to increase their profitability and incentivize truthful miners to continue appending
+              blocks to the forked chain.
+            </small>
           </section>
           <section>
             <small>
               <ul>
                 <li>Until now we assumed all miners have equal computational power.</li>
                 <li class="fragment"><a href="https://blockchain.info/pools?timespan=4days" target="_blank">Reality Check</a></li>
-                <li class="fragment">Depending on hardware and hash function used, one can produce hashes more efficiently (lower $\eta)</li>
+                <li class="fragment">Depending on hardware and hash function used, one can produce hashes more efficiently (lower $\eta$)</li>
               </ul>
             </small>
           </section>
@@ -541,8 +535,8 @@
               <ul>
                 <li class="fragment">To become a miner, you have to submit a significant stake as a guarantee</li>
                 <li class="fragment">We remove nonce $x$,  having to satisfy $\frac{h_B}{stake_i} &lt; \frac{u}{d}$, where</li>
-                <li class="fragment">$h_B = h(transactions \cdot B_{previous} \cdot time)</li>
-                <li class="fragment">Only differentiating property is miner's $i$ stake $stake_i$</li>
+                <li class="fragment">$h_B = h(transactions \cdot B_{previous} \cdot time)$</li>
+                <li class="fragment">Only differentiating property is miner $i$'s stake $stake_i$</li>
                 <li class="fragment">$stake_i \nearrow \quad \implies$ winning likelihood $\nearrow$</li>
                 <li class="fragment">Miners can not perform more than $1$ per second, regardless of hardware (ASIC resistant)</li>
                 <li class="fragment">Quantum resistant</li>
@@ -582,6 +576,7 @@
             <small>
               <ul>
                 <li class="fragment">In order to submit a transaction, one has to approve $2$ pending transactions</li>
+                <li class="fragment"><a href="https://public-rdsdavdrpd.now.sh" target="_blank">Demo</a>
                 <li class="fragment">Pending transactions are selected using a MCMC randomized walk</li>
                 <li class="fragment">No (direct) transaction fees</li>
                 <li class="fragment">Energy cost of approving other transactions has to be significant enough such that spamming the network is costly</li>
